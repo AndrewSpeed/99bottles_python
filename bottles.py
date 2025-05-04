@@ -4,6 +4,11 @@ class Bottles:
             return "bottle"
         return "bottles"
 
+    def pronoun(self, number: int) -> str:
+        if number == 1:
+            return "it"
+        return "one"
+
     def verse(self, verse_number: int) -> str:
         match verse_number:
             case 0:
@@ -15,16 +20,16 @@ class Bottles:
                 )
             case 1:
                 return (
-                    "1 bottle of beer on the wall, "
-                    "1 bottle of beer.\n"
-                    "Take it down and pass it around, "
+                    f"{verse_number} {self.container(verse_number)} of beer on the wall, "
+                    f"{verse_number} {self.container(verse_number)} of beer.\n"
+                    f"Take {self.pronoun(verse_number)} down and pass it around, "
                     "no more bottles of beer on the wall.\n"
                 )
             case _:
                 return (
-                    f"{verse_number} bottles of beer on the wall, "
-                    f"{verse_number} bottles of beer.\n"
-                    "Take one down and pass it around, "
+                    f"{verse_number} {self.container(verse_number)} of beer on the wall, "
+                    f"{verse_number} {self.container(verse_number)} of beer.\n"
+                    f"Take {self.pronoun(verse_number)} down and pass it around, "
                     f"{verse_number - 1} {self.container(verse_number - 1)} of beer on the wall.\n"
                 )
 
