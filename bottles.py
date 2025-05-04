@@ -19,10 +19,10 @@ class Bottles:
             return "no more"
         return str(number)
 
-    def action(self, verse_number: int) -> str:
-        if verse_number == 0:
+    def action(self, number: int) -> str:
+        if number == 0:
             return "Go to the store and buy some more"
-        return f"Take {self.pronoun(verse_number)} down and pass it around"
+        return f"Take {self.pronoun(number)} down and pass it around"
 
     def verse(self, verse_number: int) -> str:
         return (
