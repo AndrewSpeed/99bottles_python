@@ -33,6 +33,8 @@ class BottleNumber:
                 cls = BottleNumber0
             case 1:
                 cls = BottleNumber1
+            case 6:
+                cls = BottleNumber6
             case _:
                 cls = BottleNumber
 
@@ -61,6 +63,16 @@ class BottleNumber1(BottleNumber):
     @override
     def pronoun(self) -> str:
         return "it"
+
+
+class BottleNumber6(BottleNumber):
+    @override
+    def quantity(self) -> str:
+        return "1"
+
+    @override
+    def container(self) -> str:
+        return "six-pack"
 
 
 class Bottles:
