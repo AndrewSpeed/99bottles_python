@@ -1,4 +1,3 @@
-import pytest
 from bottles import Bottles
 
 
@@ -52,7 +51,6 @@ def test_verse_0():
     assert Bottles().verse(0) == expected
 
 
-@pytest.mark.skip()
 def test_a_couple_of_verses():
     expected = (
         "99 bottles of beer on the wall, "
@@ -68,7 +66,6 @@ def test_a_couple_of_verses():
     assert Bottles().verses(99, 98) == expected
 
 
-@pytest.mark.skip()
 def test_a_few_verses():
     expected = (
         "2 bottles of beer on the wall, "
@@ -89,7 +86,6 @@ def test_a_few_verses():
     assert Bottles().verses(2, 0) == expected
 
 
-@pytest.mark.skip()
 def test_the_whole_song():
     expected = """99 bottles of beer on the wall, 99 bottles of beer.
 Take one down and pass it around, 98 bottles of beer on the wall.
