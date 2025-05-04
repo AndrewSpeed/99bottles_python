@@ -13,8 +13,8 @@ class BottleNumber:
     def pronoun(self) -> str:
         return "one"
 
-    def successor(self) -> int:
-        return self._number - 1
+    def successor(self) -> "BottleNumber":
+        return BottleNumber(self._number - 1)
 
     def quantity(self) -> str:
         return str(self._number)
@@ -25,6 +25,18 @@ class BottleNumber:
     @override
     def __str__(self) -> str:
         return f"{self.quantity()} {self.container()}"
+
+    @override
+    def __new__(cls, number: int):
+        match number:
+            case 0:
+                cls = BottleNumber0
+            case 1:
+                cls = BottleNumber1
+            case _:
+                cls = BottleNumber
+
+        return super().__new__(cls)
 
 
 class BottleNumber0(BottleNumber):
@@ -37,8 +49,8 @@ class BottleNumber0(BottleNumber):
         return "Go to the store and buy some more"
 
     @override
-    def successor(self) -> int:
-        return 99
+    def successor(self) -> BottleNumber:
+        return BottleNumber(99)
 
 
 class BottleNumber1(BottleNumber):
@@ -52,25 +64,14 @@ class BottleNumber1(BottleNumber):
 
 
 class Bottles:
-    @staticmethod
-    def bottle_number_given(number: int) -> BottleNumber:
-        match number:
-            case 0:
-                return BottleNumber0(number)
-            case 1:
-                return BottleNumber1(number)
-            case _:
-                return BottleNumber(number)
-
     def verse(self, verse_number: int) -> str:
-        bottle_number = self.bottle_number_given(verse_number)
-        next_bottle_number = self.bottle_number_given(bottle_number.successor())
+        bottle_number = BottleNumber(verse_number)
 
         return (
             f"{bottle_number} of beer on the wall, ".capitalize()
             + f"{bottle_number} of beer.\n"
             + f"{bottle_number.action()}, "
-            + f"{next_bottle_number} of beer on the wall.\n"
+            + f"{bottle_number.successor()} of beer on the wall.\n"
         )
 
     def verses(self, verse_start: int, verse_end: int) -> str:
