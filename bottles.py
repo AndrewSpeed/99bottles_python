@@ -9,27 +9,28 @@ class Bottles:
             return "it"
         return "one"
 
+    def successor(self, number: int) -> int:
+        if number == 0:
+            return 99
+        return number - 1
+
     def quantity(self, number: int) -> str:
         if number == 0:
             return "no more"
         return str(number)
 
+    def action(self, verse_number: int) -> str:
+        if verse_number == 0:
+            return "Go to the store and buy some more"
+        return f"Take {self.pronoun(verse_number)} down and pass it around"
+
     def verse(self, verse_number: int) -> str:
-        match verse_number:
-            case 0:
-                return (
-                    "No more bottles of beer on the wall, "
-                    "no more bottles of beer.\n"
-                    "Go to the store and buy some more, "
-                    "99 bottles of beer on the wall.\n"
-                )
-            case _:
-                return (
-                    f"{verse_number} {self.container(verse_number)} of beer on the wall, "
-                    f"{verse_number} {self.container(verse_number)} of beer.\n"
-                    f"Take {self.pronoun(verse_number)} down and pass it around, "
-                    f"{self.quantity(verse_number - 1)} {self.container(verse_number - 1)} of beer on the wall.\n"
-                )
+        return (
+            f"{self.quantity(verse_number).capitalize()} {self.container(verse_number)} of beer on the wall, "
+            f"{self.quantity(verse_number)} {self.container(verse_number)} of beer.\n"
+            f"{self.action(verse_number)}, "
+            f"{self.quantity(self.successor(verse_number))} {self.container(self.successor(verse_number))} of beer on the wall.\n"
+        )
 
     def verses(self, verse_start: int, verse_end: int) -> str:
         verse_indices = range(verse_start, verse_end - 1, -1)
